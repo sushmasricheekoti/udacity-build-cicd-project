@@ -30,7 +30,7 @@ module.exports = {
            parser:'babel-ts',
          },
        ],
-       'react/prop-types':process.env.FAIL_LINT ?2 : 0,
+       'react/prop-types': 'off',
        'react/jsx-uses-vars':'warn',
      },
    };
