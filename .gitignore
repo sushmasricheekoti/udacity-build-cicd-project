@@ -1,0 +1,5 @@
+#terraform generated files
+setup/terraform/.terraform
+setup/terraform/*.tfstate
+setup/terraform/*.tfstate.*
+setup/terraform/.terraform.lock.hcl
