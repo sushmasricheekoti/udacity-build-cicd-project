@@ -1,14 +1,18 @@
 module.exports = {
   ignorePatterns: ['build/', 'dist/', 'node_modules/'],
   extends: ['eslint:recommended', 'plugin:react/recommended'],
-  plugins: ['react', 'prettier'],
+  plugins: ['react'],
   settings: {
-    react: { version: 'detect' },
+    react: {
+      version: 'detect',
+    },
   },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    ecmaFeatures: { jsx: true },
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   env: {
     browser: true,
@@ -17,15 +21,6 @@ module.exports = {
     jest: true,
   },
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        jsxSingleQuote: false,
-        printWidth: 120,
-        parser: 'babel-ts',
-      },
-    ],
     'react/prop-types': 'off',
     'react/jsx-uses-vars': 'warn',
   },
