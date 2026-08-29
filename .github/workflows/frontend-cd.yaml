@@ -81,7 +81,7 @@ jobs:
           push: false
           tags: ${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
           build-args: |
-            REACT_APP_MOVIE_API_URL=http://backend:5000
+            REACT_APP_MOVIE_API_URL=http://a9391b23456c14e0885d1bd25fd07c5b-1766857596.us-east-1.elb.amazonaws.com
 
   deploy:
     runs-on: ubuntu-latest
@@ -109,7 +109,7 @@ jobs:
           push: true
           tags: ${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
           build-args: |
-            REACT_APP_MOVIE_API_URL=http://backend:5000
+            REACT_APP_MOVIE_API_URL=http://a9391b23456c14e0885d1bd25fd07c5b-1766857596.us-east-1.elb.amazonaws.com
 
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name "${{ env.EKS_CLUSTER_NAME }}" --region "${{ env.AWS_REGION }}"
