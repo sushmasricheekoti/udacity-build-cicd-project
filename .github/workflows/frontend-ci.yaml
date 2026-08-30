@@ -82,7 +82,7 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: CI=true npm test -- --watchAll=false
+        run: npm run test
 
       - name: Build Docker image
         uses: docker/build-push-action@v6
