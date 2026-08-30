@@ -1,3 +1,4 @@
+```yaml
 name: Frontend Continuous Integration
 
 on:
@@ -25,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version-file: "starter/frontend/.nvmrc"
           cache: npm
           cache-dependency-path: starter/frontend/package-lock.json
 
@@ -50,7 +51,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version-file: "starter/frontend/.nvmrc"
           cache: npm
           cache-dependency-path: starter/frontend/package-lock.json
 
@@ -68,9 +69,26 @@ jobs:
       - lint
       - test
 
+    defaults:
+      run:
+        working-directory: starter/frontend
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "starter/frontend/.nvmrc"
+          cache: npm
+          cache-dependency-path: starter/frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
 
       - name: Build frontend Docker image
         uses: docker/build-push-action@v6
@@ -80,3 +98,4 @@ jobs:
           tags: mp-frontend:latest
           build-args: |
             REACT_APP_MOVIE_API_URL=http://localhost:5000
+```
