@@ -1,4 +1,3 @@
-```yaml
 name: Frontend Continuous Integration
 
 on:
@@ -6,13 +5,11 @@ on:
     branches:
       - main
     paths:
-      - "starter/frontend/**"
-
+      - 'starter/frontend/**'
   workflow_dispatch:
 
 jobs:
   lint:
-    name: Frontend Lint
     runs-on: ubuntu-latest
 
     defaults:
@@ -20,24 +17,23 @@ jobs:
         working-directory: starter/frontend
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version-file: "starter/frontend/.nvmrc"
+          node-version-file: 'starter/frontend/.nvmrc'
           cache: npm
           cache-dependency-path: starter/frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint
+      - name: Run lint
         run: npm run lint
 
   test:
-    name: Frontend Tests
     runs-on: ubuntu-latest
 
     defaults:
@@ -45,13 +41,13 @@ jobs:
         working-directory: starter/frontend
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version-file: "starter/frontend/.nvmrc"
+          node-version-file: 'starter/frontend/.nvmrc'
           cache: npm
           cache-dependency-path: starter/frontend/package-lock.json
 
@@ -62,7 +58,6 @@ jobs:
         run: CI=true npm test -- --watchAll=false
 
   build:
-    name: Frontend Docker Build
     runs-on: ubuntu-latest
 
     needs:
@@ -74,13 +69,13 @@ jobs:
         working-directory: starter/frontend
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version-file: "starter/frontend/.nvmrc"
+          node-version-file: 'starter/frontend/.nvmrc'
           cache: npm
           cache-dependency-path: starter/frontend/package-lock.json
 
@@ -90,10 +85,10 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      - name: Build frontend Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
-          context: starter/frontend
+          context: ./starter/frontend
           push: false
           tags: mp-frontend:latest
           build-args: |
