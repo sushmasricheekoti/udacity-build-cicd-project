@@ -93,4 +93,3 @@ jobs:
           tags: mp-frontend:latest
           build-args: |
             REACT_APP_MOVIE_API_URL=http://localhost:5000
-```
